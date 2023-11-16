@@ -1,40 +1,14 @@
-const inputBox =document.getElementById("input-box");
-const listContainer=document.getElementById("list-container");
-function addTask(){
-	if(inputBox.value===''){
-		alert("Input required!")
-	
-	}
-	else{
-		let li=document.createElement("li");
-		li.innerHTML=inputBox.value;
-		listContainer.appendChild(li);
-		let span=document.createElement("span");
-		span.innerHTML="\u00d7";
-		li.appendChild(span);
-	}
-	inputBox.value="";
-	saveData();
+function shortenUrl() {
+    var originalUrl = document.getElementById("originalUrl").value;
 
+    // Simple validation
+    if (originalUrl.trim() === "") {
+        alert("Please enter a valid URL");
+        return;
+    }
+
+    // Replace this with your actual URL shortening logic
+    var shortenedUrl = "https://short.url/abcd123";
+
+    document.getElementById("shortenedUrl").innerText = "Shortened URL: " + shortenedUrl;
 }
-listContainer.addEventListener("click", function(e){
-	if (e.target.tagName === "LI") {
-		e.target.classList.toggle("checked");
-		saveData();
-	}
-	else if(e.target.tagName === "SPAN"){
-		e.target.parentElement.remove();
-		saveData();
-	}
-}, false);
-
-function saveData(){
-	localStorage.setItem("data", listContainer.innerHTML);
-}
-
-function showTask(){
-	listContainer.innerHTML=localStorage.getItem("data");
-}
-
-showTask();
-
